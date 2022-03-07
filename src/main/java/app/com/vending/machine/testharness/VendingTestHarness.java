@@ -16,6 +16,8 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
@@ -294,9 +296,9 @@ public class VendingTestHarness {
 
 		String endpoint = String.format("http://localhost:%s/vendingmachine/v1/init/%s",getPortNumber(),coins);
 		
-		HttpGet httpGet = new HttpGet(endpoint);
+		HttpPost httpPost = new HttpPost(endpoint);
 		try {
-			response = client.execute(httpGet);
+			response = client.execute(httpPost);
 		} catch (Exception e) {
 			System.out.println("Unable to invoke /init endpoint");
 			return;
@@ -403,9 +405,9 @@ public class VendingTestHarness {
 		
 		String endpoint = String.format("http://localhost:%s/vendingmachine/v1/deposit/%s",getPortNumber(),coins);
 		
-		HttpGet httpGet = new HttpGet(endpoint);
+		HttpPost httpPost = new HttpPost(endpoint);
 		try {
-			response = client.execute(httpGet);
+			response = client.execute(httpPost);
 		} catch (Exception e) {
 			System.out.println("Unable to invoke /deposit endpoint");
 			return;
@@ -448,9 +450,9 @@ public class VendingTestHarness {
 		
 		String endpoint = String.format("http://localhost:%s/vendingmachine/v1/vend/%s",getPortNumber(),product);
 		
-		HttpGet httpGet = new HttpGet(endpoint);
+		HttpPut httpPut = new HttpPut(endpoint);
 		try {
-			response = client.execute(httpGet);
+			response = client.execute(httpPut);
 		} catch (Exception e) {
 			System.out.println("Unable to invoke /vend endpoint");
 			return;

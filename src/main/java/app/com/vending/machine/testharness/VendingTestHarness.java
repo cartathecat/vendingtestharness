@@ -259,7 +259,7 @@ public class VendingTestHarness {
 
 		return result;
 	}
-
+ 
 	/**
 	 * Initialise vending machine
 	 * @throws IOException

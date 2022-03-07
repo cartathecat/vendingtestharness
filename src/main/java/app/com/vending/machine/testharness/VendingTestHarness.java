@@ -241,6 +241,7 @@ public class VendingTestHarness {
 			response = client.execute(httpGet);
 		} catch (Exception e) {
 			System.out.println("Unable to invoke /status endpoint");
+			client.close();
 			return "TIMEOUT";
 		}
 		
@@ -257,6 +258,7 @@ public class VendingTestHarness {
 			result = "ERROR";
 		}
 
+		client.close();
 		return result;
 	}
  
@@ -301,6 +303,7 @@ public class VendingTestHarness {
 			response = client.execute(httpPost);
 		} catch (Exception e) {
 			System.out.println("Unable to invoke /init endpoint");
+			client.close();
 			return;
 		}
 		
@@ -315,6 +318,7 @@ public class VendingTestHarness {
 		String result = EntityUtils.toString(entity);
 		System.out.println("result : " + result);
 		
+		client.close();
 	}
 	
 	/**
@@ -340,7 +344,7 @@ public class VendingTestHarness {
 			response = client.execute(httpGet);
 		} catch (Exception e) {
 			System.out.println("Unable to invoke /products endpoint");
-			return;
+			client.close();
 		}
 		
 		System.out.println("response.getStatusLine() :: " + response.getStatusLine());
@@ -375,9 +379,9 @@ public class VendingTestHarness {
 		} else {
 			HttpEntity entity = response.getEntity();
 			String result = EntityUtils.toString(entity);
-			System.out.println("result : " + result);
-			
+			System.out.println("result : " + result);			
 		}
+		client.close();
 	}
 
 	/**
@@ -410,6 +414,7 @@ public class VendingTestHarness {
 			response = client.execute(httpPost);
 		} catch (Exception e) {
 			System.out.println("Unable to invoke /deposit endpoint");
+			client.close();
 			return;
 		}
 		
@@ -423,7 +428,8 @@ public class VendingTestHarness {
 		HttpEntity entity = response.getEntity();
 		String result = EntityUtils.toString(entity);
 		System.out.println("result : " + result);
-	
+
+		client.close();
 	}
 
 	/**
@@ -457,7 +463,6 @@ public class VendingTestHarness {
 			System.out.println("Unable to invoke /vend endpoint");
 			return;
 		}
-
 		
 		System.out.println("response.getStatusLine() :: " + response.getStatusLine());
 		final int statusCode = response.getStatusLine().getStatusCode();	
@@ -470,6 +475,7 @@ public class VendingTestHarness {
 		String result = EntityUtils.toString(entity);
 		System.out.println("result : " + result);
 		
+		client.close();
 	}
 
 	/**
@@ -495,6 +501,7 @@ public class VendingTestHarness {
 			response = client.execute(httpGet);
 		} catch (Exception e) {
 			System.out.println("Unable to invoke /refund endpoint");
+			client.close();
 			return;
 		}
 		
@@ -508,7 +515,8 @@ public class VendingTestHarness {
 		HttpEntity entity = response.getEntity();
 		String result = EntityUtils.toString(entity);
 		System.out.println("result : " + result);
-		
+
+		client.close();
 	}
 
 	/**
@@ -534,6 +542,7 @@ public class VendingTestHarness {
 			response = client.execute(httpGet);
 		} catch (Exception e) {
 			System.out.println("Unable to invoke /floatvalue endpoint");
+			client.close();
 			return;
 		}
 	
@@ -548,6 +557,7 @@ public class VendingTestHarness {
 		String result = EntityUtils.toString(entity);
 		System.out.println("result : " + result);
 
+		client.close();
 	}
 
 	/**
@@ -573,9 +583,10 @@ public class VendingTestHarness {
 			response = client.execute(httpGet);
 		} catch (Exception e) {
 			System.out.println("Unable to invoke /coinbucket endpoint");
+			client.close();
 			return;
 		}
-	
+		
 		System.out.println("response.getStatusLine() :: " + response.getStatusLine());
 		final int statusCode = response.getStatusLine().getStatusCode();	
 		if (statusCode == HttpStatus.SC_OK) {
@@ -587,6 +598,7 @@ public class VendingTestHarness {
 		String result = EntityUtils.toString(entity);
 		System.out.println("result : " + result);
 
+		client.close();
 	}
 
 }
